@@ -1,75 +1,61 @@
-# *CryptoHub*
 
-
-This web app: **insert description**
-
-Time spent: **30** hours spent in total 
 
 <!-- https://sportshubblog.netlify.app/ -->
 
-## Required Features
+# CryptoHub
 
-The following **required** functionality is completed:
+CryptoHub is a CRUD fullstack blog application with live crypto price updates and cryptocurrency news. It is built using React for the frontend and Supabase as the database.
 
-- [x] **A create form that allows the user to create posts**
-- [x] **Posts have a title and optionally additional textual content and/or an image added as an external image URL**
-- [x] **A home feed displaying previously created posts**
-- [x] **By default, the time created, title, and number of upvotes for each post is shown on the feed**
-- [x] **Clicking on a post shall direct the user to a new page for the selected post**
-- [x] **Users can sort posts by either their created time or upvotes count**
-- [x] **Users can search for posts by title**
-- [x] **A separate post page for each created post, where any additional information is shown is linked whenever a user clicks a post**
-- [x] **Users can leave comments underneath a post on the post's separate page**
-- [x] **Each post should have an upvote button on the post's page. Each click increases its upvotes count by one and users can upvote any number of times**
-- [x] **A previously created post can be edited or deleted from its post page**
+## Deployment
 
-The following **optional** features are implemented:
+The application is deployed and can be accessed at https://cryptohub001.netlify.app.
 
-- [ ] Users can only edit and deleted posts or delete comments by entering the secret key, which is set by the user during post creation
-- [ ] Upon launching the web app, the user is assigned a random user ID. It will be associated with all posts and comments that they make and displayed on them.
-- [ ] Users can repost a previous post by referencing its post ID. On the post page of the new post, the referenced post is displayed and linked, creating a thread
-- [ ] Users can customize the interface of the web app
-- [ ] Users can share and view web videos
-- [ ] Users can set flags while creating a post. Then users can filter posts by flags on the home feed.
-- [ ] Users can upload images directly from their local machine as an image file
-- [ ] Display a loading animation whenever data is being fetched
+## Features
 
-The following **additional** features are implemented:
+- User authentication and authorization
+- Create, read, update, and delete blog posts
+- Real-time updates of crypto prices
+- Crypto news feed
 
-* [ ] List anything else that you added to improve the site's functionality!
+## Technologies Used
 
-## Video Walkthrough
+- React: A JavaScript library for building user interfaces
+- Supabase: An open-source Firebase alternative with real-time and RESTful APIs for building modern applications
+- [Any additional libraries or frameworks you're using]
 
-Here's a walkthrough of implemented user stories:
+## Installation
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+1. Clone the repository: `git clone https://github.com/isomer04/CryptoHub.git`
+2. Install dependencies: `npm install`
+3. Set up the Supabase database and obtain the necessary credentials (API keys, database URL, etc.)
+4. Configure the Supabase credentials in the application
+5. [Add any additional installation steps]
 
-![sportshub](https://user-images.githubusercontent.com/43922158/234166072-1738fffa-8b41-4ec2-aec2-955ac4922a49.gif)
+## Usage
 
+1. Start the development server: `npm start`
+2. Access the application in your browser at `http://localhost:3000`
+3. [Add any additional usage instructions]
 
-<!-- Replace this with whatever GIF tool you used! -->
-GIF created with ...  LICEcap
-<!-- Recommended tools:
-[Kap](https://getkap.co/) for macOS
-[ScreenToGif](https://www.screentogif.com/) for Windows
-[peek](https://github.com/phw/peek) for Linux. -->
+## Contributing
 
-## Notes
+Contributions are welcome! If you find any issues or want to enhance the functionality, feel free to open an issue or submit a pull request.
 
-Describe any challenges encountered while building the app.
+Please make sure to follow the existing coding style and provide clear commit messages.
 
 ## License
 
-    Copyright 2023
+[Specify the license under which your project is distributed]
 
-    Licensed under the Apache License, Version 2.0 (the "License");
-    you may not use this file except in compliance with the License.
-    You may obtain a copy of the License at
+## Acknowledgements
 
-        http://www.apache.org/licenses/LICENSE-2.0
+- [List any external resources or tutorials that you used]
+- [Give credit to any third-party libraries or assets you're using]
 
-    Unless required by applicable law or agreed to in writing, software
-    distributed under the License is distributed on an "AS IS" BASIS,
-    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-    See the License for the specific language governing permissions and
-    limitations under the License.
+## Contact
+
+For any inquiries or questions, please contact [your email address].
+
+[Include any other relevant information or badges, such as build status, code coverage, etc.]
+
+
