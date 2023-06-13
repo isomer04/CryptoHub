@@ -47,12 +47,12 @@ const CoinChart = ({ symbol, market }) => {
   return (
     <div>
       {histData ? ( // rendering only if API call actually returned us data
-        <div style={{ backgroundColor: "rgba(255, 255, 255, 0.404)" }}>
+        <div  className="line-chart-container" style={{ backgroundColor: "rgba(255, 255, 255, 0.404)" }}>
           <br></br>
           <h2>30-Day Price Data for {symbol}</h2>
 
           <LineChart
-            width={1300}
+            width={800}
             height={400}
             data={cleanData(histData)}
             margin={{

@@ -17,9 +17,8 @@ import CryptoNews from "./components/CryptoNews";
 
 import "./App.css";
 
-const supabaseUrl = "https://ztycxpibtoepsrhyzvbl.supabase.co";
-const supabaseKey =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Inp0eWN4cGlidG9lcHNyaHl6dmJsIiwicm9sZSI6ImFub24iLCJpYXQiOjE2ODA2NTQyODcsImV4cCI6MTk5NjIzMDI4N30.6c3IJP0yTKzUN_eygXr9ff5Mb6Sbsnfb_P3DpfSIF1A";
+const supabaseUrl = import.meta.env.VITE_APP_SUPABASEURL;
+const supabaseKey = import.meta.env.VITE_APP_SUPABASEKEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function App() {

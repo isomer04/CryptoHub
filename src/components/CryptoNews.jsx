@@ -63,7 +63,9 @@ function CryptoNews() {
       <ul>
         {newsList.map((news) => (
           <li key={news.id}>
-            <h3>{news.title}</h3>
+            <h3>{news.title}</h3> 
+            <img src={news.imageurl} alt={news.title} />
+
             <p>{news.body}</p>
             <a href={news.url} target="_blank" rel="noopener noreferrer">
               Read More

@@ -34,21 +34,22 @@ const CoinDetail = () => {
   }
 
   return (
-    <div >
-      <h1>{fullDetails.textData[params.symbol].FullName}</h1>
+    <div className="container">
+    <h1>{fullDetails.textData[params.symbol].FullName}</h1>
       <img
-        className="images"
-        src={`https://www.cryptocompare.com${
+      className="coin-icon"
+      src={`https://www.cryptocompare.com${
           fullDetails.numbers[params.symbol].USD.IMAGEURL
         }`}
         alt={`Small icon for ${params.symbol} crypto coin`}
       />
-      <div>{fullDetails.textData[params.symbol].Description}</div>
-
+ <div className="description">
+      {fullDetails.textData[params.symbol].Description}
+    </div>
       <br />
       <br />
-      <table >
-        <tbody style={{ textAlign: "center" }}>
+      <table className="info-table">
+        <tbody >
           <tr>
             <th>Launch Date</th>
             <td>{fullDetails.textData[params.symbol].AssetLaunchDate}</td>

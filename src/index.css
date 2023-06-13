@@ -17,6 +17,13 @@
   -webkit-text-size-adjust: 100%;
 }
 
+table {
+  margin: 0 auto;
+  padding: 2% 0;
+}
+
+
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -27,7 +34,9 @@ a:hover {
 }
 
 body {
-  margin: 0;
+  width: 80%;
+
+  margin: 0 auto;
   display: flex;
   place-items: center;
   /* min-width: 320px; */
@@ -77,5 +86,49 @@ button:focus-visible {
   }
   button {
     background-color: #f9f9f9;
+  }
+}
+
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* .coin-icon {
+  display: block;
+  margin: 20px auto;
+  max-width: 200px;
+} */
+
+.description {
+  margin-bottom: 20px;
+}
+
+.info-table {
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .container {
+    width: 100%;
+  }
+
+  .coin-icon {
+    max-width: 150px;
+  }
+}
+
+
+.line-chart-container {
+  width: 100%;
+  overflow-x: auto;
+}
+
+@media (max-width: 600px) {
+  .line-chart-container {
+    width: 100%;
   }
 }
