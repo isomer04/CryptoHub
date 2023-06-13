@@ -1,11 +1,11 @@
-# Web Development Final Project - *SportsHub*
+# *CryptoHub*
 
 
 This web app: **insert description**
 
 Time spent: **30** hours spent in total 
 
-https://sportshubblog.netlify.app/
+<!-- https://sportshubblog.netlify.app/ -->
 
 ## Required Features
 
@@ -60,7 +60,7 @@ Describe any challenges encountered while building the app.
 
 ## License
 
-    Copyright [2023] [Rashed]
+    Copyright 2023
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
