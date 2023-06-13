@@ -45,17 +45,4 @@ Please make sure to follow the existing coding style and provide clear commit me
 
 ## License
 
-[Specify the license under which your project is distributed]
-
-## Acknowledgements
-
-- [List any external resources or tutorials that you used]
-- [Give credit to any third-party libraries or assets you're using]
-
-## Contact
-
-For any inquiries or questions, please contact [your email address].
-
-[Include any other relevant information or badges, such as build status, code coverage, etc.]
-
 
