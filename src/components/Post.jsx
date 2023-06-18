@@ -7,11 +7,11 @@ import { Link } from "react-router-dom";
 const Post = ({ posts, updatePost, deletePost }) => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const [post, setPost] = useState({});
+  const [post, setPost] = useState({ comments: [] });
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [imageUrl, setImageUrl] = useState("");
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState([]);
   const [showEditForm, setShowEditForm] = useState(false);
 
   useEffect(() => {
@@ -56,12 +56,12 @@ const Post = ({ posts, updatePost, deletePost }) => {
   const handleComment = (event) => {
     event.preventDefault();
     if (!comment) return;
-    const updatedComments = [...post.comments, { text: comment }];
+    const updatedComments = [...(post.comments || []), { text: comment }];
     const updatedPost = { ...post, comments: updatedComments };
+    setComment("");
     updatePost(updatedPost);
     setPost(updatedPost);
-    setComment("");
-    location.reload();
+    window.location.reload(); 
   };
 
   return (
@@ -90,7 +90,7 @@ const Post = ({ posts, updatePost, deletePost }) => {
             onSubmit={handleUpdate}
             component="form"
             sx={{
-              "& > :not(style)": { m: 1, width: "25ch" },
+              "& > :not(style)": { m: 1, width: "100%" }, // Modify the width as per your preference
             }}
             noValidate
             autoComplete="off"
@@ -109,6 +109,7 @@ const Post = ({ posts, updatePost, deletePost }) => {
               id="content"
               value={content}
               onChange={(event) => setContent(event.target.value)}
+              style={{ width: "100%", height: "200px" }} // Modify the width and height as per your preference
             />{" "}
             <br />
             <label htmlFor="image-url">Image URL:</label>
@@ -117,6 +118,7 @@ const Post = ({ posts, updatePost, deletePost }) => {
               id="image-url"
               value={imageUrl}
               onChange={(event) => setImageUrl(event.target.value)}
+              style={{ width: "100%" }} // Modify the width as per your preference
             />{" "}
             <br />
             <button type="submit">Update Post</button>
@@ -126,11 +128,11 @@ const Post = ({ posts, updatePost, deletePost }) => {
         </>
       )}
 
-      <div >
+      <div>
         {/* <div style={{backgroundColor : 'white', color: "black"}}> */}
 
         <h3 style={{ boxShadow: "0px 0px 25px 0px #fcfcfc" }}>Comments</h3>
-        <ul >
+        <ul>
           {post.comments &&
             post.comments.map((comment, index) => {
               const jsonString = comment;

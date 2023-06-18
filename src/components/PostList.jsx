@@ -20,9 +20,10 @@ const PostList = ({ posts }) => {
     } else {
       const dateA = a.created_at ? new Date(a.created_at) : new Date(0);
       const dateB = b.created_at ? new Date(b.created_at) : new Date(0);
-      return dateB - dateA;
+      return dateB.getTime() - dateA.getTime();
     }
   });
+  
 
   const filteredPosts = sortedPosts.filter(
     (post) =>
