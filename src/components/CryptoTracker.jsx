@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import CoinInfo from "./coinInfo";
+import { Container, Typography, TextField, CircularProgress } from "@mui/material";
 import "../App.css";
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY_CRYPTO;
@@ -8,29 +9,30 @@ function CryptoTracker() {
   const [list, setList] = useState(null);
   const [filteredResults, setFilteredResults] = useState([]);
   const [searchInput, setSearchInput] = useState("");
-  const [loading, setLoading] = useState(true); // Introduce a loading state
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetchAllCoinData().catch(console.error);
   }, []);
 
   const fetchAllCoinData = async () => {
-    const response = await fetch(
-      "https://min-api.cryptocompare.com/data/all/coinlist?&api_key=" + API_KEY // Add the missing "=" in the API URL
-    );
-    const json = await response.json();
-    setList(json);
-    setLoading(false); // Set loading to false once the data is fetched
+    try {
+      const response = await fetch(
+        "https://min-api.cryptocompare.com/data/all/coinlist?api_key=" + API_KEY
+      );
+      const json = await response.json();
+      setList(json);
+      setLoading(false);
+    } catch (error) {
+      console.error("Error fetching coin data:", error);
+    }
   };
 
   const searchItems = (searchValue) => {
     setSearchInput(searchValue);
     if (searchValue !== "") {
-      const filteredData = Object.keys(list.Data).filter((item) =>
-        Object.values(item)
-          .join("")
-          .toLowerCase()
-          .includes(searchValue.toLowerCase())
+      const filteredData = Object.keys(list.Data).filter((coin) =>
+        list.Data[coin].FullName.toLowerCase().includes(searchValue.toLowerCase())
       );
       setFilteredResults(filteredData);
     } else {
@@ -39,21 +41,30 @@ function CryptoTracker() {
   };
 
   return (
-    <div className="whole-page">
-      <h1> Crypto List</h1>
-      <input
+
+    
+    <Container maxWidth="md" style={{ paddingTop: "100px" }} className="whole-page">
+      <Typography variant="h4" gutterBottom>
+        Crypto List
+      </Typography>
+      <TextField
         type="text"
+        label="Search"
+        variant="outlined"
         placeholder="Search..."
-        onChange={(inputString) => searchItems(inputString.target.value)}
+        fullWidth
+        onChange={(event) => searchItems(event.target.value)}
+        style={{ marginBottom: "20px" }}
       />
       {loading ? (
-        <h2>Loading...</h2> // Display "Loading..." when the data is being fetched
+        <CircularProgress />
       ) : (
         <ul>
           {searchInput.length > 0
             ? filteredResults.map((coin) =>
                 list.Data[coin].PlatformType === "blockchain" ? (
                   <CoinInfo
+                    key={coin}
                     image={list.Data[coin].ImageUrl}
                     name={list.Data[coin].FullName}
                     symbol={list.Data[coin].Symbol}
@@ -61,9 +72,10 @@ function CryptoTracker() {
                 ) : null
               )
             : list &&
-              Object.entries(list.Data).map(([coin]) =>
+              Object.keys(list.Data).map((coin) =>
                 list.Data[coin].PlatformType === "blockchain" ? (
                   <CoinInfo
+                    key={coin}
                     image={list.Data[coin].ImageUrl}
                     name={list.Data[coin].FullName}
                     symbol={list.Data[coin].Symbol}
@@ -72,7 +84,7 @@ function CryptoTracker() {
               )}
         </ul>
       )}
-    </div>
+    </Container>
   );
 }
 

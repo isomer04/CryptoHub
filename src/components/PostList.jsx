@@ -1,6 +1,13 @@
 import React, { useState } from "react";
 import Header from "./Header";
 import { Link } from "react-router-dom";
+import {
+  Button,
+  TextField,
+  Paper,
+  Typography,
+  Box,
+} from "@mui/material";
 
 const PostList = ({ posts }) => {
   const [sortType, setSortType] = useState("created_at");
@@ -51,64 +58,56 @@ const PostList = ({ posts }) => {
   }
 
   return (
-    <div
-      style={
-        {
-          // backgroundColor: "white",
-          // color: "black",
-          // width: "100%",
-          // textAlign: "left",
-        }
-      }
-    >
-            <Header />
-
-      {" "}
-      <div>
-        <button onClick={() => handleSort("created_at")}>
+    <Paper sx={{ padding: "20px", textAlign: "left" }}>
+      <Header />
+      <Box sx={{ marginTop: "20px" }}>
+        <Button onClick={() => handleSort("created_at")}>
           Sort by Created Time
-        </button>
-        <button onClick={() => handleSort("upvotes")}>Sort by Upvotes</button>
-      </div>
-      <br />
-      <div>
-        <label>Search by Title:  </label>
-        <input type="text" value={searchTerm} onChange={handleSearch} />
-      </div>
-      <br />
-      {filteredPosts.map((post) => (
-        <div
-          style={{
-            // backgroundColor: "white",
-            // color: "black",
-            textAlign: "left",
-            borderTop: "5px solid ",
-            boxShadow: "0px 0px 25px 0px #ffffff",
-            paddingLeft: "2%",
-          }}
-          key={post.id}
-        >
-          {/* <p>Posted On: {new Date(post.created_at).toLocaleString()}</p> */}
-
-          <p>Posted {getHumanReadableDate(post.created_at)}</p>
-
-          {post && (
-            <Link
-              style={{ color: "black", fontWeight: "bolder", fontSize: 20 }}
-              to={`/post/${post.id}`}
-            >
-              {post.title}
-            </Link>
-          )}
-          <p>
-            {" "}
-            👍 {post.upvotes}
-            {post.upvotes < 2 ? " Upvote" : " Upvotes"}
-          </p>
-          <hr />
-        </div>
-      ))}
-    </div>
+        </Button>
+        <Button onClick={() => handleSort("upvotes")}>Sort by Upvotes</Button>
+      </Box>
+      <Box sx={{ marginTop: "20px" }}>
+        <TextField
+          label="Search by Title"
+          value={searchTerm}
+          onChange={handleSearch}
+        />
+      </Box>
+      <Box sx={{ marginTop: "20px" }}>
+        {filteredPosts.map((post) => (
+          <Paper
+            key={post.id}
+            elevation={3}
+            sx={{
+              padding: "10px",
+              marginTop: "10px",
+              borderLeft: "5px solid",
+              borderColor: "primary.main",
+            }}
+          >
+            <Typography variant="body2">
+              Posted {getHumanReadableDate(post.created_at)}
+            </Typography>
+            {post && (
+              <Link
+                style={{
+                  color: "black",
+                  fontWeight: "bolder",
+                  fontSize: "20px",
+                }}
+                to={`/post/${post.id}`}
+              >
+                {post.title}
+              </Link>
+            )}
+            <Typography variant="body1">
+              👍 {post.upvotes} {post.upvotes < 2 ? "Upvote" : "Upvotes"}
+            </Typography>
+            <hr />
+          </Paper>
+        ))}
+      </Box>
+    </Paper>
   );
 };
 

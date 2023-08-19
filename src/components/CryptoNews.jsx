@@ -1,7 +1,14 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-
-import "../App.css";
+import {
+  Container,
+  Grid,
+  Typography,
+  Card,
+  CardContent,
+  CardMedia,
+  Link,
+} from "@mui/material";
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY_CRYPTO;
 
@@ -9,12 +16,10 @@ function CryptoNews() {
   const [newsList, setNewsList] = useState([]);
   const [loading, setLoading] = useState(true);
 
-
-
   useEffect(() => {
     fetchCryptoNews();
   }, []);
-  
+
   const fetchCryptoNews = async () => {
     try {
       const response = await axios.get(
@@ -26,56 +31,50 @@ function CryptoNews() {
       console.error("Error fetching crypto news:", error);
     }
   };
-  
 
-  // return (
-  //   <div className="whole-page">
-  //     <h1>Crypto News</h1>
-  //     {loading ? (
-  //       <p>Loading...</p>
-  //     ) : (
-  //       <ul className="news-list">
-  //         {newsList.map((news, index) => (
-  //           news.urlToImage && (
-  //             <li key={index} className="news-item">
-  //               <div className="news-content">
-  //                 <img src={news.urlToImage} alt={news.title} />
-  //                 <div className="news-details">
-  //                   <h3>
-  //                     <a href={news.url} target="_blank" rel="noopener noreferrer">
-  //                       {news.title}
-  //                     </a>
-  //                   </h3>
-  //                   <p>{news.content}</p>
-  //                 </div>
-  //               </div>
-  //             </li>
-  //           )
-  //         ))}
-  //       </ul>
-  //     )}
-  //   </div>
-  // );
+  const truncateText = (text, maxLength) => {
+    if (text.length > maxLength) {
+      return text.slice(0, maxLength) + "...";
+    }
+    return text;
+  };
 
   return (
-    <div>
-      <h1>Crypto News</h1>
-      <ul>
+    <Container maxWidth="xl" style={{ paddingTop: "100px" }}>
+      <Typography variant="h3" align="center" gutterBottom>
+        Crypto News
+      </Typography>
+      <Grid container spacing={2}>
         {newsList.map((news) => (
-          <li key={news.id}>
-            <h3>{news.title}</h3> 
-            <img src={news.imageurl} alt={news.title} />
-
-            <p>{news.body}</p>
-            <a href={news.url} target="_blank" rel="noopener noreferrer">
-              Read More
-            </a>
-          </li>
+          <Grid key={news.id} item xs={12} sm={6} md={4}>
+            <Card>
+              <CardMedia
+                component="img"
+                height="140"
+                image={news.imageurl}
+                alt={news.title}
+              />
+              <CardContent>
+                <Typography variant="h6" gutterBottom>
+                  {news.title}
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  {truncateText(news.body, 200)} {/* Limit to 200 characters */}
+                </Typography>
+                <Link
+                  href={news.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Read More
+                </Link>
+              </CardContent>
+            </Card>
+          </Grid>
         ))}
-      </ul>
-    </div>
+      </Grid>
+    </Container>
   );
-  
 }
 
 export default CryptoNews;

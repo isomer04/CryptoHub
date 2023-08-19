@@ -1,6 +1,13 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import Box from "@mui/material/Box";
+import {
+  Box,
+  Button,
+  TextField,
+  Paper,
+  Typography,
+} from "@mui/material";
+
 
 import { Link } from "react-router-dom";
 
@@ -65,23 +72,28 @@ const Post = ({ posts, updatePost, deletePost }) => {
   };
 
   return (
-    <div>
-      <p>Posted on: {new Date(post.created_at).toLocaleString()}</p>
-
-      <h2>{post.title}</h2>
-      <p>{post.content}</p>
-
-      <p> 👍 {post.upvotes} Upvotes</p>
-
+    <Paper sx={{ padding: "20px" }}>
+      <Typography variant="subtitle1">
+        Posted on: {new Date(post.created_at).toLocaleString()}
+      </Typography>
+      <Typography variant="h2">{post.title}</Typography>
+      <Typography variant="body1">{post.content}</Typography>
+      <Typography variant="body2">
+        👍 {post.upvotes} Upvotes
+      </Typography>
       {post.image_url && (
         <img src={post.image_url} width={400} alt={post.title} />
       )}
       <hr />
-
-      <button onClick={handleUpvote}>Upvote</button>
-      <button onClick={() => setShowEditForm(true)}>Edit Post</button>
-
-      <button onClick={handleDelete}>Delete Post</button>
+      <Button variant="outlined" onClick={handleUpvote}>
+        Upvote
+      </Button>
+      <Button variant="outlined" onClick={() => setShowEditForm(true)}>
+        Edit Post
+      </Button>
+      <Button variant="outlined" onClick={handleDelete}>
+        Delete Post
+      </Button>
       <hr />
       {showEditForm && (
         <>
@@ -128,36 +140,42 @@ const Post = ({ posts, updatePost, deletePost }) => {
         </>
       )}
 
-      <div>
-        {/* <div style={{backgroundColor : 'white', color: "black"}}> */}
-
-        <h3 style={{ boxShadow: "0px 0px 25px 0px #fcfcfc" }}>Comments</h3>
+<hr />
+      <Box sx={{ backgroundColor: "#fcfcfc", padding: "10px", marginTop: "20px" }}>
+        <Typography variant="h5">Comments</Typography>
         <ul>
           {post.comments &&
             post.comments.map((comment, index) => {
               const jsonString = comment;
               const commentObj = JSON.parse(jsonString);
               return (
-                <div key={index}>
-                  <p>{commentObj.text}</p>
-                </div>
+                <Paper
+                  key={index}
+                  elevation={2}
+                  sx={{ padding: "10px", marginBottom: "10px" }}
+                >
+                  <Typography variant="body1">{commentObj.text}</Typography>
+                </Paper>
               );
             })}
         </ul>
-      </div>
-
+      </Box>
       <form onSubmit={handleComment}>
-        <input
+        <TextField
           type="text"
           id="comment"
           value={comment}
           onChange={(event) => setComment(event.target.value)}
+          fullWidth
+          label="Add Comment"
         />
-        <button type="submit">Add Comment</button>
+        <Button type="submit" variant="outlined" sx={{ marginTop: "10px" }}>
+          Add Comment
+        </Button>
       </form>
       <hr />
       <Link to="/">Back to Home</Link>
-    </div>
+    </Paper>
   );
 };
 
