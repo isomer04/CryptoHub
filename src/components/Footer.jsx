@@ -1,4 +1,5 @@
 import React from 'react';
+import { Typography, Container } from '@mui/material';
 
 const Footer = () => {
   return (
@@ -10,7 +11,11 @@ const Footer = () => {
       justifyContent: 'center',
       textAlign: 'center',
     }}>
-      <p>&copy; 2023 - CryptoHub</p>
+      <Container maxWidth="md">
+        <Typography variant="body2" color="textSecondary" align="center">
+          &copy; 2023 - CryptoHub
+        </Typography>
+      </Container>
     </footer>
   );
 }
