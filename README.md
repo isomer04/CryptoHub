@@ -17,6 +17,15 @@ The application is deployed and can be accessed at https://cryptohub001.netlify.
 - Real-time updates of crypto prices
 - Crypto news feed
 
+
+[img]https://i.imgur.com/9YNFUZ2.gif[/img]
+
+
+
+![cryptoHub1](https://github.com/isomer04/CryptoHub/assets/43922158/e3e11700-1812-4d48-8f71-1ab9546b7d7d)
+
+
+
 ## Technologies Used
 
 - React: A JavaScript library for building user interfaces
