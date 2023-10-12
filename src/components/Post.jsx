@@ -1,13 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
-import {
-  Box,
-  Button,
-  TextField,
-  Paper,
-  Typography,
-} from "@mui/material";
-
+import { Box, Button, TextField, Paper, Typography } from "@mui/material";
 
 import { Link } from "react-router-dom";
 
@@ -68,7 +61,7 @@ const Post = ({ posts, updatePost, deletePost }) => {
     setComment("");
     updatePost(updatedPost);
     setPost(updatedPost);
-    window.location.reload(); 
+    window.location.reload();
   };
 
   return (
@@ -78,9 +71,7 @@ const Post = ({ posts, updatePost, deletePost }) => {
       </Typography>
       <Typography variant="h2">{post.title}</Typography>
       <Typography variant="body1">{post.content}</Typography>
-      <Typography variant="body2">
-        👍 {post.upvotes} Upvotes
-      </Typography>
+      <Typography variant="body2">👍 {post.upvotes} Upvotes</Typography>
       {post.image_url && (
         <img src={post.image_url} width={400} alt={post.title} />
       )}
@@ -140,8 +131,10 @@ const Post = ({ posts, updatePost, deletePost }) => {
         </>
       )}
 
-<hr />
-      <Box sx={{ backgroundColor: "#fcfcfc", padding: "10px", marginTop: "20px" }}>
+      <hr />
+      <Box
+        sx={{ backgroundColor: "#fcfcfc", padding: "10px", marginTop: "20px" }}
+      >
         <Typography variant="h5">Comments</Typography>
         <ul>
           {post.comments &&
