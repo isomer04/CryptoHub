@@ -11,6 +11,10 @@ const MyForm = styled("form")(({ theme }) => ({
   display: "flex",
   flexDirection: "column",
   gap: theme.spacing(2),
+  backgroundColor: "white", 
+  padding: theme.spacing(3),
+  borderRadius: "8px", 
+  boxShadow: "0 2px 4px rgba(0, 0, 0, 0.1)", 
 }));
 
 const MyButton = styled(Button)(({ theme }) => ({
@@ -112,6 +116,7 @@ function Contact() {
           {loading ? "Sending..." : "Send"}
         </MyButton>
       </MyForm>
+      <br />
       <Typography variant="body1" align="center">
         You can also reach us by phone, email, or at the address provided.
       </Typography>
