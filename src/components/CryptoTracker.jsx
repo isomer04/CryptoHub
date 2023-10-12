@@ -1,6 +1,11 @@
 import React, { useState, useEffect } from "react";
 import CoinInfo from "./coinInfo";
-import { Container, Typography, TextField, CircularProgress } from "@mui/material";
+import {
+  Container,
+  Typography,
+  TextField,
+  CircularProgress,
+} from "@mui/material";
 import "../App.css";
 
 const API_KEY = import.meta.env.VITE_APP_API_KEY_CRYPTO;
@@ -32,7 +37,9 @@ function CryptoTracker() {
     setSearchInput(searchValue);
     if (searchValue !== "") {
       const filteredData = Object.keys(list.Data).filter((coin) =>
-        list.Data[coin].FullName.toLowerCase().includes(searchValue.toLowerCase())
+        list.Data[coin].FullName.toLowerCase().includes(
+          searchValue.toLowerCase()
+        )
       );
       setFilteredResults(filteredData);
     } else {
@@ -41,12 +48,15 @@ function CryptoTracker() {
   };
 
   return (
-
-    
-    <Container maxWidth="md" style={{ paddingTop: "100px" }} className="whole-page">
+    <Container
+      maxWidth="md"
+      style={{ paddingTop: "100px" }}
+      className="whole-page"
+    >
       <Typography variant="h4" gutterBottom>
         Crypto List
       </Typography>
+
       <TextField
         type="text"
         label="Search"
@@ -54,8 +64,10 @@ function CryptoTracker() {
         placeholder="Search..."
         fullWidth
         onChange={(event) => searchItems(event.target.value)}
-        style={{ marginBottom: "20px" }}
+        className="white-border-textfield"
+        sx={{ marginBottom: 2 }}
       />
+
       {loading ? (
         <CircularProgress />
       ) : (

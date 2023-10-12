@@ -27,9 +27,9 @@ li.main-list {
   font-size: larger;
 }
 
-
-
-
+.white-border-textfield {
+  border: 1px solid white;
+}
 
 nav {
   position: fixed;
