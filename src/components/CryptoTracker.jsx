@@ -50,7 +50,7 @@ function CryptoTracker() {
   return (
     <Container
       maxWidth="md"
-      style={{ paddingTop: "100px" }}
+      style={{ paddingTop: "100px", backgroundColor: "white", color: "black",  }}
       className="whole-page"
     >
       <Typography variant="h4" gutterBottom>

@@ -106,7 +106,7 @@ function PostForm({ handleCreate }) {
               onChange={(event) => setImage(event.target.files[0])}
             />
             <br />
-
+              
             <label htmlFor="image-url">Image URL:</label>
             <TextField
               type="url"
