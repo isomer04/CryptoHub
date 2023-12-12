@@ -17,24 +17,39 @@ import CryptoNews from "./components/CryptoNews";
 
 import "./App.css";
 
+// Define type for post
+interface Post {
+  id: string;
+  title: string;
+  content: string;
+  image_url: string;
+  comments: { text: string }[];
+}
+
 const supabaseUrl = import.meta.env.VITE_APP_SUPABASEURL;
 const supabaseKey = import.meta.env.VITE_APP_SUPABASEKEY;
 const supabase = createClient(supabaseUrl, supabaseKey);
 
 function App() {
-  const [posts, setPosts] = useState([]);
+  // Use generic type for state
+  const [posts, setPosts] = useState<Post[]>([]);
 
   useEffect(() => {
     fetchPosts();
   }, []);
 
   const fetchPosts = async () => {
-    let { data: posts, error } = await supabase.from("sportshub").select("*");
-    if (error) console.log("Error fetching posts:", error);
-    setPosts(posts);
+    try {
+      let { data: posts, error } = await supabase.from("sportshub").select("*");
+      if (error) console.log("Error fetching posts:", error);
+      setPosts(posts || []); // Ensure posts is an array or set it to an empty array
+    } catch (error) {
+      console.error("Error fetching posts:", error);
+    }
   };
+  
 
-  const handleCreate = async (newPost) => {
+  const handleCreate = async (newPost: Post) => {
     let { data: post, error } = await supabase
       .from("sportshub")
       .insert(newPost);
@@ -42,7 +57,7 @@ function App() {
     setPosts([...posts, post]);
   };
 
-  const updatePost = async (updatedPost) => {
+  const updatePost = async (updatedPost: Post) => {
     const { data: post, error } = await supabase
       .from("sportshub")
       .update(updatedPost)
@@ -51,18 +66,16 @@ function App() {
     if (error) {
       console.log("Error updating post:", error);
     } else {
-      // Check if the post object is null
+      // Check if post object is null
       if (!post) {
         // throw new Error("Unable to update post: post is null");
-      }
-
-      if (post) {
+      } else if (post) {
         setPosts(posts.map((p) => (p.id === post.id ? post : p)));
       }
     }
   };
 
-  const deletePost = async (postId) => {
+  const deletePost = async (postId: string) => {
     await supabase.from("sportshub").delete().match({ id: postId });
     setPosts(posts.filter((p) => p.id !== postId));
   };
